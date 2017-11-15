@@ -1,0 +1,19 @@
+{
+  "name": "mozfest-session-parser",
+  "version": "1.0.0",
+  "description": "Parses Mozilla Festival session submissions from Github issues",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Mozilla",
+    "Festival"
+  ],
+  "author": "Ryan Warsaw",
+  "license": "MPL-2.0",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "graphql-client": "^2.0.0"
+  }
+}
