@@ -1,10 +1,10 @@
 ## :page_with_curl: Mozilla Festival: Session Parser
 
-If you don't know what Mozilla Festival is, you can ![learn more here](https://mozillafestival.org/about).
+If you don't know what Mozilla Festival is, you can learn more ![here](https://mozillafestival.org/about).
 
 Every year the Mozilla Festival team uses Github as it's tool of choice to catalog,
 coordinate and decide which sessions are going to be present at the next event. For example
-here is the 2017 version: ![MozillaFoundation/mozfest-program-2017](https://github.com/MozillaFoundation/mozfest-program-2017).
+here is the 2017 version: ![mozfest-program-2017](https://github.com/MozillaFoundation/mozfest-program-2017).
 
 This tool uses the official Github API (v4 GraphQL) to parse the tickets in past or present program repositories. It then takes that parsed information, and neatly formats into CSV format, for further manipulation by other tools.
 
