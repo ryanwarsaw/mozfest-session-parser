@@ -20,6 +20,7 @@ query ($organization: String!, $repository: String!, $endCursor: String) {
         node {
           title
           body
+          closed
           labels(first: 100) {
             edges {
               node {
@@ -86,10 +87,11 @@ async function parseIssueInfo(totalIssues) {
       response["data"]["repository"]["issues"]["edges"].forEach((issue) => {
         let moreDetails = issue["node"]["body"].split(/###|\]\*\*|\*\*\[/);
         let session = {
-          title: issue["node"]["title"],
+          title: issue["node"]["title"].trim(),
           owner: {},
           milestone: issue["node"]["milestone"] !== null ? issue["node"]["milestone"]["title"] : undefined,
-          labels: issue["node"]["labels"]["edges"].length < 0 ? undefined : issue["node"]["labels"]["edges"].map(label => label["node"]["name"])
+          labels: issue["node"]["labels"]["edges"].length < 0 ? undefined : issue["node"]["labels"]["edges"].map(label => label["node"]["name"]),
+          closed: issue["node"]["closed"]
         };
         moreDetails.forEach((element, index) => {
           const detailField = element.trim();
@@ -104,7 +106,8 @@ async function parseIssueInfo(totalIssues) {
           } else if (detailField === "Additional facilitators") {
             return session.additional_facilitators = moreDetails[index + 1]
               .split(",")
-              .map(element => element.trim());
+              .map(element => element.trim())
+              .filter(element => element !== "");
           } else if (detailField.includes("What will happen in your session?")) {
             return session.description = detailField
               .replace("What will happen in your session?", "")
